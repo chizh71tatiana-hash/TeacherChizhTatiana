@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Английский с репетитором</title>
+
+  <!-- Шрифт -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --rose: #DB8084;
+      --navy: #23314A;
+      --blue: #8FA1B1;
+      --bg-dark: #151c2a;
+      --text-light: #fdfdfd;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at 0% 0%, #334663 0, var(--navy) 40%, #111827 100%);
+      color: var(--text-light);
+      scroll-behavior: smooth;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Навигация */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(14px);
+      background: rgba(21, 28, 42, 0.9);
+      border-bottom: 1px solid rgba(143, 161, 177, 0.3);
+    }
+
+    .nav-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 13px;
+    }
+
+    .logo-badge {
+      width: 32px;
+      height: 32px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--rose), #f3a1a5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: var(--navy);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .nav-links a {
+      opacity: 0.8;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      background: var(--rose);
+      border-radius: 999px;
+      transition: width 0.25s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .nav-cta small {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      opacity: 0.7;
+    }
+
+    .btn-primary {
+      border-radius: 999px;
+      border: none;
+      padding: 10px 22px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      background: linear-gradient(145deg, var(--rose), #f49da2);
+      color: var(--navy);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.4);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    .btn-primary span {
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.03);
+      box-shadow: 0 18px 34px rgba(0, 0, 0, 0.45);
+    }
+
+    .btn-ghost {
+      border-radius: 999px;
+      padding: 9px 20px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      background: transparent;
+      border: 1px solid rgba(143, 161, 177, 0.7);
+      color: var(--text-light);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      opacity: 0.85;
+      transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease, transform 0.15s ease;
+    }
+
+    .btn-ghost span {
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    .btn-ghost:hover {
+      background: rgba(143, 161, 177, 0.1);
+      transform: translateY(-1px);
+      border-color: var(--rose);
+    }
+
+    /* Основной контейнер */
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 40px 18px 70px;
+    }
+
+    /* Герой */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 40px;
+      align-items: center;
+      padding: 30px 0 60px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(143, 161, 177, 0.18);
+      border: 1px solid rgba(143, 161, 177, 0.4);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .hero-badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(145deg, var(--rose), #ffc0c4);
+      box-shadow: 0 0 0 4px rgba(219, 128, 132, 0.35);
+    }
+
+    .hero-title {
+      margin: 18px 0 10px;
+      font-size: clamp(32px, 5vw, 44px);
+      line-height: 1.1;
+      font-weight: 800;
+    }
+
+    .hero-title span {
+      color: var(--rose);
+    }
+
+    .hero-subtitle {
+      font-size: 16px;
+      max-width: 480px;
+      opacity: 0.9;
+      margin-bottom: 20px;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .tag {
+      font-size: 11px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(21, 28, 42, 0.7);
+      border: 1px solid rgba(143, 161, 177, 0.55);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 26px;
+    }
+
+    .hero-note {
+      font-size: 13px;
+      opacity: 0.8;
+    }
+
+    .hero-note strong {
+      color: var(--rose);
+    }
+
+    /* Правая часть героя */
+    .hero-right {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-photo-wrapper {
+      max-width: 320px;
+      width: 100%;
+      border-radius: 32px;
+      overflow: hidden;
+      box-shadow: 0 26px 70px rgba(0, 0, 0, 0.7);
+      border: 3px solid rgba(219, 128, 132, 0.8);
+    }
+
+    .hero-photo {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    .hero-card-main {
+      position: relative;
+      border-radius: 32px;
+      padding: 26px 24px 24px;
+      width: 100%;
+      max-width: 340px;
+      background: radial-gradient(circle at 0% 0%, rgba(219, 128, 132, 0.25), rgba(35, 49, 74, 1));
+      box-shadow: 0 26px 70px rgba(0, 0, 0, 0.7);
+      overflow: hidden;
+    }
+
+    .hero-card-main::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 120% -10%, rgba(219, 128, 132, 0.8), transparent 60%),
+                  radial-gradient(circle at -20% 120%, rgba(143, 161, 177, 0.9), transparent 55%);
+      mix-blend-mode: screen;
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .hero-card-header {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+
+    .hero-card-title {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      opacity: 0.9;
+    }
+
+    .hero-card-level {
+      font-size: 11px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(143, 161, 177, 0.7);
+    }
+
+    .hero-quote {
+      position: relative;
+      font-size: 13px;
+      line-height: 1.5;
+      padding: 10px 0 16px;
+      border-bottom: 1px dashed rgba(143, 161, 177, 0.6);
+      margin-bottom: 14px;
+    }
+
+    .hero-quote span {
+      display: block;
+      margin-top: 8px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      opacity: 0.8;
+    }
+
+    .hero-list {
+      position: relative;
+      display: grid;
+      gap: 8px;
+      font-size: 12px;
+      margin-bottom: 14px;
+    }
+
+    .hero-list-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(143, 161, 177, 0.55);
+    }
+
+    .hero-list-label {
+      opacity: 0.8;
+    }
+
+    .hero-list-value {
+      font-weight: 600;
+    }
+
+    .hero-card-footer {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 8px;
+      font-size: 11px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #5dffb5;
+      box-shadow: 0 0 0 4px rgba(93, 255, 181, 0.25);
+      margin-right: 6px;
+    }
+
+    .hero-mini-cards {
+      position: absolute;
+      inset: auto auto -26px -40px;
+      display: flex;
+      gap: 16px;
+    }
+
+    .mini-card {
+      width: 82px;
+      height: 82px;
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7);
+    }
+
+    .mini-card-1 {
+      background: var(--rose);
+      color: var(--navy);
+    }
+
+    .mini-card-2 {
+      background: var(--blue);
+      color: var(--navy);
+    }
+
+    .mini-card span {
+      font-size: 18px;
+    }
+    .about-photo-wrapper {
+      margin: 10px 0 22px;
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .about-photo {
+      width: 180px;
+      height: 180px;
+      border-radius: 28px;
+      object-fit: cover;
+      border: 3px solid rgba(219, 128, 132, 0.9);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7);
+    }
+
+    /* Блоки */
+    .section {
+      padding: 32px 0 10px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .section-title span {
+      color: var(--rose);
+    }
+
+    .section-subtitle {
+      font-size: 14px;
+      max-width: 400px;
+      opacity: 0.85;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      border-radius: 20px;
+      padding: 18px 18px 20px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(143, 161, 177, 0.6);
+      box-shadow: 0 18px 38px rgba(0, 0, 0, 0.65);
+    }
+
+    .card.accent-rose {
+      background: radial-gradient(circle at 0% 0%, rgba(219, 128, 132, 0.52), rgba(15, 23, 42, 0.98));
+      border-color: rgba(219, 128, 132, 0.8);
+    }
+
+    .card.accent-blue {
+      background: radial-gradient(circle at 0% 0%, rgba(143, 161, 177, 0.5), rgba(15, 23, 42, 0.98));
+      border-color: rgba(143, 161, 177, 0.9);
+    }
+
+    .card-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      opacity: 0.76;
+      margin-bottom: 6px;
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+    }
+
+    .card-subtitle {
+      margin: 0 0 8px;
+      font-size: 13px;
+      opacity: 0.8;
+    }
+
+    .card p {
+      margin: 0 0 12px;
+      font-size: 13px;
+      line-height: 1.6;
+      opacity: 0.9;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .pill {
+      font-size: 11px;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: rgba(21, 28, 42, 0.8);
+      border: 1px solid rgba(143, 161, 177, 0.6);
+    }
+
+    .price {
+      font-size: 15px;
+      font-weight: 700;
+      margin-top: 6px;
+      color: var(--rose);
+    }
+
+    /* Контакты */
+    .contacts-wrapper {
+      margin-top: 12px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 18px;
+    }
+
+    .contacts-list {
+      display: grid;
+      gap: 10px;
+      font-size: 14px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(143, 161, 177, 0.6);
+      cursor: pointer;
+      transition: border-color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+    }
+
+    .contact-item:hover {
+      border-color: var(--rose);
+      background: rgba(15, 23, 42, 0.98);
+      transform: translateY(-1px);
+    }
+
+    .contact-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      background: radial-gradient(circle at 0% 0%, var(--rose), var(--navy));
+    }
+
+    .contact-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      opacity: 0.75;
+    }
+
+    .contact-value {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .contact-note {
+      font-size: 12px;
+      opacity: 0.8;
+      margin-top: 6px;
+    }
+
+    .form-card {
+      border-radius: 20px;
+      padding: 18px 18px 20px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px dashed rgba(143, 161, 177, 0.7);
+    }
+
+    .form-row {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .form-row label {
+      font-size: 12px;
+      opacity: 0.8;
+    }
+
+    .form-row input,
+    .form-row select,
+    .form-row textarea {
+      border-radius: 12px;
+      border: 1px solid rgba(143, 161, 177, 0.7);
+      background: rgba(15, 23, 42, 0.95);
+      padding: 8px 10px;
+      color: var(--text-light);
+      font-family: inherit;
+      font-size: 13px;
+      outline: none;
+    }
+
+    .form-row textarea {
+      min-height: 70px;
+      resize: vertical;
+    }
+
+    .form-row input:focus,
+    .form-row select:focus,
+    .form-row textarea:focus {
+      border-color: var(--rose);
+      box-shadow: 0 0 0 1px rgba(219, 128, 132, 0.6);
+    }
+
+    .form-hint {
+      font-size: 11px;
+      opacity: 0.75;
+      margin-bottom: 10px;
+    }
+
+    /* Подвал */
+    footer {
+      border-top: 1px solid rgba(143, 161, 177, 0.35);
+      margin-top: 40px;
+      padding: 14px 18px 26px;
+      font-size: 11px;
+      opacity: 0.8;
+      text-align: center;
+    }
+
+    /* Адаптив */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-right {
+        order: -1;
+      }
+
+      .hero-card-main {
+        margin: 0 auto;
+      }
+
+      .hero-mini-cards {
+        position: static;
+        margin-top: 18px;
+      }
+
+      .grid-3 {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .contacts-wrapper {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .nav-inner {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 18px;
+      }
+
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .page {
+        padding: 26px 16px 50px;
+      }
+
+      .hero-card-main {
+        border-radius: 26px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Навигация -->
+  <header class="nav">
+    <div class="nav-inner">
+      <div class="logo">
+        <div class="logo-badge">EN</div>
+        <div>
+          <div>
+          <div>Чиж Татьяна Валерьевна</div>
+          <div style="font-size:11px;opacity:0.8;">репетитор английского языка онлайн</div>
+        </div>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#about">Обо мне</a>
+        <a href="#formats">Форматы</a>
+        <a href="#levels">Кому подойдёт</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#contacts">Записаться</a>
+      </nav>
+
+      <div class="nav-cta">
+        <button class="btn-ghost" onclick="document.getElementById('contacts').scrollIntoView({behavior: 'smooth'})">
+          <span>✉</span> Написать
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <!-- Герой -->
+    <section class="hero" id="top">
+      <div>
+        <div class="hero-badge">
+          <div class="hero-badge-dot"></div>
+          <span>Онлайн-уроки английского, которые вдохновляют</span>
+        </div>
+        <h1 class="hero-title">
+          Английский&nbsp;<span>в удовольствие</span><br />
+          с личным репетитором
+        </h1>
+        <p class="hero-subtitle">
+          Помогаю заговорить уверенно, подтянуть грамматику и полюбить язык, даже если сейчас страшно открыть рот на английском.
+        </p>
+
+        <div class="hero-tags">
+          <span class="tag">Взрослые и подростки</span>
+          <span class="tag">Разговорный английский</span>
+          <span class="tag">Экзамены • путешествия • работа</span>
+        </div>
+
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="document.getElementById('contacts').scrollIntoView({behavior: 'smooth'})">
+            Бесплатный созвон <span>→</span>
+          </button>
+          <button class="btn-ghost" onclick="document.getElementById('formats').scrollIntoView({behavior: 'smooth'})">
+            Форматы занятий
+          </button>
+        </div>
+
+        <p class="hero-note">
+          <strong>Первые 15 минут</strong> — знакомство и определение уровня. Никакого стресса, только живой разговор.
+        </p>
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-photo-wrapper">
+          <img src="https://i.postimg.cc/qR81Y58y/my-photo-jpg.jpg" alt="Фото репетитора английского" class="hero-photo" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Обо мне -->
+    <section class="section" id="about">
+      <div class="section-header">
+        <h2 class="section-title">Кто будет с вами заниматься<span>?</span></h2>
+        <p class="section-subtitle">
+          Спокойная, поддерживающая атмосфера, много практики и чуть-чуть структурной магии, чтобы вы наконец увидели прогресс.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <article class="card accent-rose">
+          <div class="card-label">Обо мне</div>
+          <h3>Чиж Татьяна Валерьевна</h3>
+          <p class="card-subtitle">Репетитор, который объясняет по-человечески</p>
+          <p>
+            Уже 25 лет я помогаю ученикам перестать бояться ошибок, убрать языковой барьер и заговорить естественно. Уроки строю вокруг ваших реальных задач: переезд, работа, путешествия, экзамены и просто желание свободно чувствовать себя в английском.
+          </p>
+          <div class="pill-row">
+            <span class="pill">индивидуальный план</span>
+            <span class="pill">много разговорной практики</span>
+            <span class="pill">дружелюбная атмосфера</span>
+          </div>
+        </article>
+
+        <article class="card accent-blue">
+          <div class="card-label">Подход</div>
+          <h3>Баланс структуры и живого языка</h3>
+          <p>
+            Используем современные учебники, сериалы, подкасты и реальные диалоги. Грамматика — не сухие правила, а понятные схемы и примеры из жизни.
+          </p>
+          <div class="pill-row">
+            <span class="pill">грамматика без боли</span>
+            <span class="pill">лексика из реальной жизни</span>
+            <span class="pill">игровые задания</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-label">Результат</div>
+          <h3>Вы говорите увереннее и с удовольствием</h3>
+          <p>
+            Цель — не идеальный английский, а живое общение. Уже через несколько недель вы начинаете строить фразы быстрее, перестаёте зависать и переводить в голове каждое слово.
+          </p>
+          <div class="pill-row">
+            <span class="pill">уверенность в речи</span>
+            <span class="pill">расширение словаря</span>
+            <span class="pill">чёткая система в голове</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Форматы занятий -->
+    <section class="section" id="formats">
+      <div class="section-header">
+        <h2 class="section-title">Форматы занятий<span>.</span></h2>
+        <p class="section-subtitle">
+          Выбирайте формат, который подходит именно вам: спокойные индивидуальные занятия или динамичная мини-группа.
+        </p>
+      </div>
+
+      <div class="grid-2">
+        <article class="card accent-rose">
+          <div class="card-label">Индивидуальные уроки</div>
+          <h3>Полный фокус на ваших целях</h3>
+          <p>
+            Разбираем ваши реальные ситуации: собеседование, презентация, поездка, общение с коллегами. Темп — комфортный для вас, домашка — только полезная.
+          </p>
+          <p class="price">55 минут — 1500 ₽ · индивидуальное занятие</p>
+          <div class="pill-row">
+            <span class="pill">разговорный английский</span>
+            <span class="pill">подготовка к экзаменам</span>
+            <span class="pill">профессиональный английский</span>
+          </div>
+        </article>
+
+        <article class="card accent-blue">
+          <div class="card-label">Мини-группа 2–4 человека</div>
+          <h3>Больше общения, больше энергии</h3>
+          <p>
+            Комфортный формат, где вы говорите не только с преподавателем, но и с другими учениками. Игры, дебаты, ролевые диалоги — максимум практики.
+          </p>
+          <p class="price">55 минут — 1200 ₽ с человека · группа 2–4 человека</p>
+          <div class="pill-row">
+            <span class="pill">разговорные клубы</span>
+            <span class="pill">совместные проекты</span>
+            <span class="pill">поддержка группы</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Для кого -->
+    <section class="section" id="levels">
+      <div class="section-header">
+        <h2 class="section-title">Кому подойдут занятия<span>?</span></h2>
+        <p class="section-subtitle">
+          Если вы узнаёте себя в одном из описаний ниже — вы на правильной странице.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <article class="card">
+          <div class="card-label">Стартуем</div>
+          <h3>Вы давно "начинаете", но так и не начали</h3>
+          <p>
+            Нулевой или забытый базовый уровень. Нужно наконец собрать всё в систему и начать говорить простыми фразами без паники.
+          </p>
+          <div class="pill-row">
+            <span class="pill">A0–A1</span>
+            <span class="pill">много опоры на русский</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-label">Продолжаем</div>
+          <h3>Вы "что-то понимаете", но не можете говорить</h3>
+          <p>
+            Понимаете тексты и речь, но язык застревает. Нужны разговорные тренировки, повтор грамматики и обновление словаря.
+          </p>
+          <div class="pill-row">
+            <span class="pill">A2–B1</span>
+            <span class="pill">убираем языковой барьер</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-label">Уверенный уровень</div>
+          <h3>Хотите звучать естественно и современно</h3>
+          <p>
+            Уже говорите, но хотите апгрейдить речь: актуальная лексика, устойчивые выражения, интонация, беглость, подготовка к собеседованиям.
+          </p>
+          <div class="pill-row">
+            <span class="pill">B2–C1</span>
+            <span class="pill">интервью, презентации</span>
+          </div>
+        </article>
+      </div>
+    </section>
+    <!-- Отзывы -->
+    <section class="section" id="reviews">
+      <div class="section-header">
+        <h2 class="section-title">Что говорят ученики<span>?</span></h2>
+        <p class="section-subtitle">
+          Живые истории родителей и взрослых учеников о занятиях и результатах.
+        </p>
+      </div>
+
+      <div class="grid-2">
+        <article class="card">
+          <div class="card-label">Алеся Аниканова, мама Василисы (12 лет)</div>
+          <p>
+            Василиса занимается уже пятый год — начинали с подготовительного уровня. Благодаря разнообразным методам она всегда вовлечена: подтянула произношение, грамматику, восприятие на слух, освоила онлайн-платформы, стала уверенно говорить и легко справляться со школьными заданиями, читает рассказы и книги на английском.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-label">Елена Югай, мама Полины</div>
+          <p>
+            Полина пришла в 4 классе, практически не умела читать по‑английски. За одно лето занятий два раза в неделю Татьяна Валерьевна довела её до нужного уровня. Сейчас Полина в 7 классе, английский — любимый предмет. Занятия динамичные, с обширной технической базой, тёплой атмосферой и постоянной поддержкой и обратной связью для родителей.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-label">Екатерина, мама Влада</div>
+          <p>
+            Сын с 2018 года углубляет английский глубже школьной программы. Татьяна подбирает учебники, онлайн-ресурсы, аудио, игры, даже читали рассказы о Шерлоке Холмсе в оригинале. Каждый урок не похож на другой, уровень знаний стал высоким, готовимся к ЕГЭ, а отношения с педагогом сложились настолько тёплые, что трудно представить расставание после школы.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-label">Алиса Дорохина</div>
+          <p>
+            После первого занятия я почувствовала, что меня вдохновили учиться и расти. На уроках безопасная атмосфера, где не страшно ошибаться и задавать сотни вопросов. Сложные темы, которые я не понимала в школе, с Татьяной Валерьевной наконец разложились по полочкам, а поддержка и вера в мои силы стали мощной мотивацией заниматься на максимум.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Контакты / заявка -->
+    <section class="section" id="contacts">
+      <div class="section-header">
+        <h2 class="section-title">Давайте познакомимся<span>!</span></h2>
+        <p class="section-subtitle">
+          Напишите мне в удобный мессенджер или оставьте заявку на бесплатный ознакомительный созвон.
+        </p>
+      </div>
+
+      <div class="contacts-wrapper">
+        <div>
+          <div class="contacts-list">
+            <a class="contact-item" href="https://t.me/ChizhEnglish" target="_blank">
+              <div class="contact-icon">✈</div>
+              <div>
+                <div class="contact-label">Telegram</div>
+                <div class="contact-value">Написать сообщение</div>
+              </div>
+            </a>
+
+            <div class="contact-item">
+              <div class="contact-icon">✉</div>
+              <div>
+                <div class="contact-label">E-mail</div>
+                <div class="contact-value">t79265895567@yandex.ru</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-card">
+          <div class="card-label">Мини-заявка</div>
+          <h3 style="margin:0 0 10px;font-size:16px;">Оставьте данные — я свяжусь с вами</h3>
+          <p class="form-hint">Форма демонстрационная. Подключите к ней свою почту или бот, если захотите принимать заявки автоматически.</p>
+
+          <form>
+            <div class="form-row">
+              <label for="name">Имя</label>
+              <input id="name" type="text" placeholder="Как к вам обращаться?" />
+            </div>
+
+            <div class="form-row">
+              <label for="contact">Контакт</label>
+              <input id="contact" type="text" placeholder="Телефон, Telegram или e-mail" />
+            </div>
+
+            <div class="form-row">
+              <label for="level">Ваш уровень</label>
+              <select id="level">
+                <option>Не знаю / сложно сказать</option>
+                <option>Начальный (A0–A1)</option>
+                <option>Средний (A2–B1)</option>
+                <option>Продвинутый (B2–C1)</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <label for="goal">Цель</label>
+              <textarea id="goal" placeholder="Например: переезд, собеседование, путешествия, учеба..."></textarea>
+            </div>
+
+            <button type="button" class="btn-primary" style="width:100%;justify-content:center;margin-top:4px;">
+              Это мой будущий урок <span>❤</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>Английский, который хочется открывать каждый день. Сделано с любовью к языку и красивым цветовым палитрам.</div>
+  </footer>
+</body>
+</html>
